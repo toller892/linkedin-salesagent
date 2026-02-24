@@ -17,10 +17,7 @@ from src.models.mappings import AdCPMediaBuy
 
 load_dotenv()
 
-mcp = FastMCP(
-    "LinkedIn AdCP Sales Agent",
-    description="AdCP Sales Agent for LinkedIn Advertising — translates AdCP tasks to LinkedIn Marketing API.",
-)
+mcp = FastMCP("LinkedIn AdCP Sales Agent")
 
 
 def _get_client() -> LinkedInClient:
