@@ -17,10 +17,15 @@ from src.models.mappings import AdCPMediaBuy
 
 load_dotenv()
 
+MOCK_MODE = os.getenv("MOCK", "").lower() in ("1", "true", "yes")
+
 mcp = FastMCP("LinkedIn AdCP Sales Agent")
 
 
-def _get_client() -> LinkedInClient:
+def _get_client():
+    if MOCK_MODE:
+        from src.linkedin.mock_client import MockLinkedInClient
+        return MockLinkedInClient()
     token = os.getenv("LINKEDIN_ACCESS_TOKEN", "")
     if not token:
         raise ValueError("LINKEDIN_ACCESS_TOKEN not set. Run /auth/login first.")
@@ -28,6 +33,8 @@ def _get_client() -> LinkedInClient:
 
 
 def _get_account_id() -> str:
+    if MOCK_MODE:
+        return "500000001"
     acct = os.getenv("LINKEDIN_AD_ACCOUNT_ID", "")
     if not acct:
         raise ValueError("LINKEDIN_AD_ACCOUNT_ID not set.")
