@@ -1,0 +1,22 @@
+{
+  "name": "LinkedIn AdCP Sales Agent",
+  "description": "AdCP Sales Agent for LinkedIn Advertising. Translates AdCP media buy tasks to LinkedIn Marketing API calls.",
+  "version": "0.1.0",
+  "protocol": "mcp",
+  "endpoint": "/mcp/",
+  "capabilities": {
+    "tasks": [
+      "validate_account",
+      "list_creative_formats",
+      "create_media_buy",
+      "sync_creatives",
+      "get_media_buy_delivery"
+    ],
+    "platforms": ["linkedin"],
+    "creative_formats": ["single_image"]
+  },
+  "authentication": {
+    "type": "bearer",
+    "description": "LinkedIn OAuth2 access token with rw_ads scope"
+  }
+}
